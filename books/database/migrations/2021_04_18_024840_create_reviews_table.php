@@ -16,14 +16,14 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             // レビューのテーブル設計
-            $table->bigIncrements('id');
+            $table->id();
             // $table->bigInteger('user_id')->unsigned(); これが入ると重複するためエラーになる
-            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->unsigned();
             $table->string('title');
             $table->longText('body');
             $table->string('image')->nullable(); //画像投稿しない場合に備えてNULL許可しておく
             $table->tinyInteger('status')->default(1)->comment('0=下書き, 1=アクティブ, 2=削除済み');
-            $table->timestamp('update_at')->useCurrentOnUpdate();
+            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
             $table->timestamp('created_at')->useCurrent(); 
         });
     }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,8 +17,20 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [App\Http\Controllers\ReviewController::class, 'index']);
+Route::get('/', [App\Http\Controllers\ReviewController::class, 'index'])->name('index');
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('/review', [\App\Http\Controllers\ReviewController::class, 'create'])->name('create'); //ルートに名前をつけている
+
+    Route::post('/review/store', [\App\Http\Controllers\ReviewController::class, 'store'])->name('store');
+
+});
+
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+

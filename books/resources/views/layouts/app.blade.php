@@ -19,7 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- 新規追加 -->
+    <!-- css新規追加 -->
+    <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
 
 
@@ -47,6 +48,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+                            <li class="nav-item">
+                                <a href="{{ route('create') }}" class='nav-link'>レビューを書く</a>
+                            </li>
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -83,7 +89,7 @@
             </div>
         </nav>
 
-        <main class="container" >
+        <main class="main container" >
             @yield('content')
         </main>
 
