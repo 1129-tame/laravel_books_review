@@ -11,7 +11,11 @@ class ReviewController extends Controller
 {
     //indexが呼び出されたらindexページに飛ぶ
     public function index() {
-        return view('index');
+
+        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(3);
+        // dd($reviews);
+
+        return view('index', compact('reviews'));
     }
 
     public function create() {
@@ -35,10 +39,9 @@ class ReviewController extends Controller
             $data = ['user_id' => \Auth::id(), 'title' => $post['title'], 'body' => $post['body']];
         }
         
-        // dd($post);
-        // dd($data);
+
         Review::insert($data);
 
-        return redirect('/');
+        return redirect('/')->with('flash_message', '投稿が完了しました');
     }
 }
