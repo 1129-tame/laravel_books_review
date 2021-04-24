@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [App\Http\Controllers\ReviewController::class, 'index'])->name('index');
+Route::get('/', [\App\Http\Controllers\ReviewController::class, 'index'])->name('index');
 
 Auth::routes();
+
+Route::get('/show/{id}', [\App\Http\Controllers\ReviewController::class, 'show'])->name('show');
 
 Route::group(['middleware' => 'auth'], function() {
 

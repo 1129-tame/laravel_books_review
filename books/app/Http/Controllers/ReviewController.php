@@ -12,10 +12,16 @@ class ReviewController extends Controller
     //indexが呼び出されたらindexページに飛ぶ
     public function index() {
 
-        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(3);
+        $reviews = Review::where('status', 1)->orderBy('created_at', 'DESC')->paginate(9);
         // dd($reviews);
 
         return view('index', compact('reviews'));
+    }
+
+    public function show($id) {
+        $review = Review::where('id', $id)->where('status', 1)->first(); //一件取得
+
+        return view('show', compact('review'));
     }
 
     public function create() {
