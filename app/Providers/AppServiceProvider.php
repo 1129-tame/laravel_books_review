@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // もしアクセスがhttpsならばasset関数もhttpsにする
+        if (request()->isSecure()) {
+            \URL::forceScheme('https');
+        }
     }
 }
