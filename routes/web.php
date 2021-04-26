@@ -30,6 +30,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/review/store', [\App\Http\Controllers\ReviewController::class, 'store'])->name('store');
 
+    // いいね機能
+    Route::get('/show/like/{id}', [\App\Http\Controllers\LikeController::class, 'like'])->name('like');
+    Route::get('/show/unlike/{id}', [\App\Http\Controllers\LikeController::class, 'unlike'])->name('unlike');
 });
 
 

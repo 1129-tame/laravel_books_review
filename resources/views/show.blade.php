@@ -24,6 +24,8 @@
       </aside>
     </div>
     <a href="{{ route('index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
+    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す</a>
+    <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す</a>
   </div>
 </div>
 @endsection
