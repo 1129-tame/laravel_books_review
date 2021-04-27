@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Review;
+use App\Models\User_like;
 use Auth;
 
 class ReviewController extends Controller
@@ -20,8 +21,10 @@ class ReviewController extends Controller
 
     public function show($id) {
         $review = Review::where('id', $id)->where('status', 1)->first(); //一件取得
+        // いいねを押したかどうか、判別
+        $like = User_like::where('review_id', $id)->where('user_id', \Auth::id())->exists();
 
-        return view('show', compact('review'));
+        return view('show', compact('review', 'like'));
     }
 
     public function create() {

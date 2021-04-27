@@ -24,8 +24,15 @@
       </aside>
     </div>
     <a href="{{ route('index') }}" class='btn btn-info btn-back mb20'>一覧へ戻る</a>
-    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す</a>
+    <!-- <img src="{{ asset('images/nicebutton.png') }}" width="30px"> -->
+@if ($like)
+
     <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す</a>
+
+@else
+    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す</a>
+
+@endif
   </div>
 </div>
 @endsection
