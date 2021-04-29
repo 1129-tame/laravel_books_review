@@ -10,7 +10,8 @@ class LikeController extends Controller
 {
     public function like($id) {
 
-        $exist = $this->is_like($id);
+        $model = new User_like();
+        $exist = $model->is_like($id);
         
         if ($exist) {
             return false; //すでにいいね済み
@@ -30,7 +31,8 @@ class LikeController extends Controller
     }
     public function unlike($id) {
 
-        $exist = $this->is_like($id);
+        $model = new User_like();
+        $exist = $model->is_like($id);
 
         if ($exist) {
             $unlike = User_like::where('review_id', $id)->where('user_id', \Auth::id());  //->firstを消したら動いた。
@@ -42,14 +44,14 @@ class LikeController extends Controller
         
     }
 
-    // 1行取得
-    public function likes($id) {
-        return User_like::where('review_id', $id)->where('user_id', \Auth::id())->first();
-    }
-    // すでにいいねしているか？
-    public function is_like($id)
-    {
-        return User_like::where('review_id', $id)->where('user_id', \Auth::id())->exists();
-        //なければfalse,あればtrueを返す
-    }
+    // // 1行取得
+    // public function likes($id) {
+    //     return User_like::where('review_id', $id)->where('user_id', \Auth::id())->first();
+    // }
+    // // すでにいいねしているか？
+    // public function is_like($id)
+    // {
+    //     return User_like::where('review_id', $id)->where('user_id', \Auth::id())->exists();
+    //     //なければfalse,あればtrueを返す
+    // }
 }

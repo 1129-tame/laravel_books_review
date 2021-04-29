@@ -11,7 +11,15 @@ class User_like extends Model
 
     protected $fillable = ['review_id','user_id']; //Laravel側から触っても良い
 
-    public function is_like() {
-        return true;
+    // 1行取得
+    public function likes($id) {
+        return $this->where('review_id', $id)->where('user_id', \Auth::id())->first();
     }
+    // すでにいいねしているか？
+    public function is_like($id)
+    {
+        return $this->where('review_id', $id)->where('user_id', \Auth::id())->exists();
+        //なければfalse,あればtrueを返す
+    }
+    
 }

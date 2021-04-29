@@ -28,11 +28,11 @@
 @if ($like)
 
     <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す</a>
-      <span class="badge badge-pill badge-success">{{ $like_count }}</span>
+      <span class="badge badge-pill ">いいね数：{{ $like_count }}</span>
 
 @else
     <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す</a>
-    <span class="badge badge-pill badge-success">{{ $like_count }}</span>
+    <span class="badge badge-pill ">いいね数：{{ $like_count }}</span>
 @endif
   </div>
 </div>
