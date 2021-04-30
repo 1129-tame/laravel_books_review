@@ -9,49 +9,22 @@ use App\Models\User;
 class LikeController extends Controller
 {
     public function like($id) {
+        $is_like = User_like::like($id);
 
-        $model = new User_like();
-        $exist = $model->is_like($id);
-        
-        if ($exist) {
-            return false; //すでにいいね済み
+        if (!$is_like) {
+            return redirect()->back()->with('flash_message', 'いいねをすでに押しています');
         } else {
-            User_like::insert(['review_id' => $id, 'user_id' => \Auth::id(),]);
-            // $b = Auth::user();
-            // dd($b);
             return redirect()->back()->with('flash_message', 'いいねを押しました');
-            
-
         }
 
-        
-
-        // return redirect(Route('show', ['id' => $id ]))->with('flash_message', 'いいねを押しました');
-       
     }
     public function unlike($id) {
+        $is_like = User_like::unlike($id);
 
-        $model = new User_like();
-        $exist = $model->is_like($id);
-
-        if ($exist) {
-            $unlike = User_like::where('review_id', $id)->where('user_id', \Auth::id());  //->firstを消したら動いた。
-            $unlike->delete();
-            return redirect()->back()->with('flash_message', 'いいねを外しました。');
+        if (!$is_like) {
+            return redirect()->back()->with('flash_message', 'いいねをまだしていません');
         } else {
-            return false;
+            return redirect()->back()->with('flash_message', 'いいねを外しました。');
         }
-        
     }
-
-    // // 1行取得
-    // public function likes($id) {
-    //     return User_like::where('review_id', $id)->where('user_id', \Auth::id())->first();
-    // }
-    // // すでにいいねしているか？
-    // public function is_like($id)
-    // {
-    //     return User_like::where('review_id', $id)->where('user_id', \Auth::id())->exists();
-    //     //なければfalse,あればtrueを返す
-    // }
 }
