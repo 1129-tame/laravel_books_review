@@ -24,7 +24,9 @@ class ReviewController extends Controller
         // いいねを押したかどうか、判別
         $like = User_like::where('review_id', $id)->where('user_id', \Auth::id())->exists();
 
-        return view('show', compact('review', 'like'));
+        $like_count = User_like::where('review_id', $id)->count();
+
+        return view('show', compact('review', 'like', 'like_count'));
     }
 
     public function create() {

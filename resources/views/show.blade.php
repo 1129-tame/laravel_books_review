@@ -11,8 +11,8 @@
     <div class="card-body d-flex">
       <section class='review-main'>
         <h2 class='h2'>本のタイトル</h2>
-        <p class='h2 mb20'>{{ $review->title }}</p>
-        <h2 class='h2'>レビュー本文</h2>
+        <p class='h2 mb20'>「{{ $review->title }}」</p>
+        <h2 class='h4'>◯レビュー本文</h2>
         <p>{{ $review->body }}</p>
       </section>  
       <aside class='review-image'>
@@ -27,11 +27,12 @@
     <!-- <img src="{{ asset('images/nicebutton.png') }}" width="30px"> -->
 @if ($like)
 
-    <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す</a>
+    <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す <span class="badge badge-light badge-pill">{{ $like_count }}</span></a>
+      <span class="badge badge-light">いいね数：{{ $like_count }}</span>
 
 @else
-    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す</a>
-
+    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す <span class="badge badge-light badge-pill">{{ $like_count }}</span></a>
+    <span class="badge badge-pill ">いいね数：{{ $like_count }}</span>
 @endif
   </div>
 </div>
