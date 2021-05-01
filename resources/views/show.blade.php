@@ -11,8 +11,8 @@
     <div class="card-body d-flex">
       <section class='review-main'>
         <h2 class='h2'>本のタイトル</h2>
-        <p class='h2 mb20'>{{ $review->title }}</p>
-        <h2 class='h2'>レビュー本文</h2>
+        <p class='h2 mb20'>「{{ $review->title }}」</p>
+        <h2 class='h4'>◯レビュー本文</h2>
         <p>{{ $review->body }}</p>
       </section>  
       <aside class='review-image'>
