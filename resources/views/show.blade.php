@@ -27,11 +27,11 @@
     <!-- <img src="{{ asset('images/nicebutton.png') }}" width="30px"> -->
 @if ($like)
 
-    <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す</a>
-      <span class="badge badge-pill ">いいね数：{{ $like_count }}</span>
+    <a href="{{ route('unlike', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを外す <span class="badge badge-light badge-pill">{{ $like_count }}</span></a>
+      <span class="badge badge-light">いいね数：{{ $like_count }}</span>
 
 @else
-    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す</a>
+    <a href="{{ route('like', ['id' => $review->id ]) }}" class='btn btn-info btn-back mb20'>いいねを押す <span class="badge badge-light badge-pill">{{ $like_count }}</span></a>
     <span class="badge badge-pill ">いいね数：{{ $like_count }}</span>
 @endif
   </div>

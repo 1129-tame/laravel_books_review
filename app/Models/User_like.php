@@ -28,7 +28,7 @@ class User_like extends Model
         $exist = $model->is_like($id);
 
         if ($exist) {
-            $unlike = User_like::where('review_id', $id)->where('user_id', \Auth::id());  //->firstを消したら動いた。
+            $unlike = User_like::where('review_id', $id)->where('user_id', \Auth::id()); 
             $unlike->delete();
             return true;
         } else {
