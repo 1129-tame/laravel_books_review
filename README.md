@@ -1,13 +1,12 @@
-#Laravelでつくるブックレビューサイト
+# book review site 
 http://practices-reviews.work/
 
 ※インスタンス停止中
 
-開発環境
+
 OS:Windows10
-
-言語：PHP
-
-環境：AWS EC2 MySQL
+language：PHP
+framework: lalavel
+environment：AWS EC2 MySQL
 
 
